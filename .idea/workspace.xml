@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f82e24fd-b62e-4221-9cbe-8a816e4c0f6b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/umc-5th-spring.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/umc-5th-spring.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/umc/study/apiPayload/code/status/ErrorStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/umc/study/apiPayload/code/status/ErrorStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/umc/study/domain/Member.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/umc/study/domain/Member.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/umc/study/domain/enums/Gender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/umc/study/domain/enums/Gender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/umc/study/domain/mapping/MemberPrefer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/umc/study/domain/mapping/MemberPrefer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/umc/study/web/controller/TempRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/umc/study/web/controller/TempRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/umc/study/apiPayload/code/status/ErrorStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/umc/study/apiPayload/code/status/ErrorStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/umc/study/domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/umc/study/domain/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/umc/study/domain/enums/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/umc/study/domain/enums/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/umc/study/domain/mapping/MemberPrefer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/umc/study/domain/mapping/MemberPrefer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/umc/study/service/MemberService/MemberCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/umc/study/service/MemberService/MemberCommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/umc/study/service/MemberService/MemberCommandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/umc/study/service/MemberService/MemberCommandServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/umc/study/validation/validator/CategoryExistValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/umc/study/validation/validator/CategoryExistValidator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,22 +43,25 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "git-widget-placeholder": "feature/1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="umc.study.validation.validator" />
@@ -73,7 +70,7 @@
   </component>
   <component name="RunManager">
     <configuration name="StudyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="umc-5th-spring.main" />
+      <module name="GitHub.umc-5th-spring.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="umc.study.StudyApplication" />
       <method v="2">
         <option name="Make" enabled="true" />

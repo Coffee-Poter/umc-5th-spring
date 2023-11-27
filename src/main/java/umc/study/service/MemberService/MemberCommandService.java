@@ -6,4 +6,5 @@ import umc.study.web.dto.MemberRequestDto;
 public interface MemberCommandService {
 
     Member joinMember(MemberRequestDto.JoinDto request);
+
 }

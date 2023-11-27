@@ -43,4 +43,8 @@ public class MemberCommandServiceImpl implements MemberCommandService{
 
         return memberRepository.save(newMember);
     }
+
+    public boolean findFoodCategoryById(Long value){
+        return foodCategoryRepository.existsById(value);
+    }
 }
