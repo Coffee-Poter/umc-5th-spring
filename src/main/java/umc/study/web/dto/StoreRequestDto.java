@@ -17,7 +17,9 @@ public class StoreRequestDto {
         String address;
         @NotNull
         Float score;
-        //검증하는 annotatoin 만들어서 넣기 @ExistRegion
-        Long region;
+        @NotNull
+        String regionName;
+        @NotNull
+        Long regionId;
     }
 }
