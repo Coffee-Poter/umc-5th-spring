@@ -1,6 +1,7 @@
 package umc.study.web.dto;
 
 import lombok.Getter;
+import umc.study.domain.enums.MissionStatus;
 import umc.study.validation.anotation.ExistCategories;
 
 import javax.validation.constraints.NotBlank;
@@ -28,5 +29,11 @@ public class MemberRequestDto {
         String specAddress;
         @ExistCategories
         List<Long> preferCategory;
+    }
+
+    @Getter
+    public static class ChallengeMissionDto{
+        @NotNull
+        MissionStatus missionStatus;
     }
 }

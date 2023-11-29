@@ -6,12 +6,18 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.study.apiPayload.code.exception.handler.FoodCategoryHandler;
 import umc.study.apiPayload.code.status.ErrorStatus;
 import umc.study.converter.MemberConverter;
+import umc.study.converter.MemberMissionConverter;
 import umc.study.converter.MemberPreferConverter;
 import umc.study.domain.FoodCategory;
 import umc.study.domain.Member;
+import umc.study.domain.Mission;
+import umc.study.domain.enums.MissionStatus;
+import umc.study.domain.mapping.MemberMission;
 import umc.study.domain.mapping.MemberPrefer;
 import umc.study.repository.FoodCategoryRepository;
 import umc.study.repository.MemberRepository;
+import umc.study.repository.MissionRepository;
+import umc.study.repository.StoreRepository;
 import umc.study.web.dto.MemberRequestDto;
 
 import java.util.List;
@@ -24,6 +30,7 @@ import java.util.stream.Collectors;
 public class MemberCommandServiceImpl implements MemberCommandService{
 
     private final MemberRepository memberRepository;
+    private final MissionRepository missionRepository;
     private final FoodCategoryRepository foodCategoryRepository;
 
     @Override
@@ -41,6 +48,18 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         memberPreferList.forEach(memberPrefer -> {memberPrefer.setMember(newMember);});
 
         return memberRepository.save(newMember);
+    }
+
+    @Override
+    public MemberMission challengeMission(Long memberId, Long missionId, MemberRequestDto.ChallengeMissionDto request) {
+        Member member = memberRepository.findById(memberId).get();
+        Mission mission = missionRepository.findById(missionId).get();
+
+        MemberMission memberMission = MemberMissionConverter.toMemberMission(request.getMissionStatus());
+        memberMission.setMember(member);
+        memberMission.setMission(mission);
+
+        return memberMission;
     }
 
     public boolean findFoodCategoryById(Long value){

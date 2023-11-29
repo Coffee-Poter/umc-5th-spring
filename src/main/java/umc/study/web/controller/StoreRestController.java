@@ -10,6 +10,7 @@ import umc.study.domain.Store;
 import umc.study.service.StoreService.StoreCommandService;
 import umc.study.validation.anotation.ExistMember;
 import umc.study.validation.anotation.ExistStore;
+import umc.study.web.dto.MemberRequestDto;
 import umc.study.web.dto.StoreRequestDto;
 import umc.study.web.dto.StoreResponseDto;
 

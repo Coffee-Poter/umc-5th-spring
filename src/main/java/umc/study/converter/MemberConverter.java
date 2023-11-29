@@ -1,7 +1,9 @@
 package umc.study.converter;
 
 import umc.study.domain.Member;
+import umc.study.domain.Mission;
 import umc.study.domain.enums.Gender;
+import umc.study.domain.mapping.MemberMission;
 import umc.study.web.dto.MemberRequestDto;
 import umc.study.web.dto.MemberResponseDto;
 
@@ -39,6 +41,15 @@ public class MemberConverter {
                 .gender(gender)
                 .name(request.getName())
                 .memberPreferList(new ArrayList<>())
+                .build();
+    }
+
+    public static MemberResponseDto.ChallengeMissionResultDto toChallengeMissionDto(MemberMission mission){
+        return MemberResponseDto.ChallengeMissionResultDto.builder()
+                .memberId(mission.getMember().getId())
+                .missionId(mission.getMission().getId())
+                .missionStatus(mission.getStatus())
+                .updatedAt(mission.getCreatedAt())
                 .build();
     }
 }
