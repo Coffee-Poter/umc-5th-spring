@@ -7,20 +7,23 @@ import umc.study.apiPayload.code.exception.handler.RegionHandler;
 import umc.study.apiPayload.code.status.ErrorStatus;
 import umc.study.converter.StoreConverter;
 import umc.study.domain.Region;
+import umc.study.domain.Review;
 import umc.study.domain.Store;
-import umc.study.repository.RegionRepository;
-import umc.study.repository.StoreRepository;
+import umc.study.repository.*;
 import umc.study.web.dto.StoreRequestDto;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class StoreCommandServiceImpl implements StoreCommandService{
 
     private final StoreRepository storeRepository;
     private final RegionRepository regionRepository;
+    private final ReviewRepository reviewRepository;
+    private final MemberRepository memberRepository;
+
 
     @Override
     @Transactional
@@ -32,4 +35,16 @@ public class StoreCommandServiceImpl implements StoreCommandService{
 
         return storeRepository.save(newStore);
     }
+
+    @Override
+    public Review createReview(Long memberId, Long storeId, StoreRequestDto.ReviewDto request) {
+
+        Review review = StoreConverter.toReview(request);
+
+        review.setMember(memberRepository.findById(memberId).get());
+        review.setStore(storeRepository.findById(storeId).get());
+
+        return reviewRepository.save(review);
+    }
+
 }

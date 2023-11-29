@@ -31,6 +31,8 @@ public enum ErrorStatus implements BaseErrorCode {
 
     //Region Error
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION404", "존재하지 않는 지역입니다."),
+
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE404", "존재하지 않는 가게입니다."),
     // For test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
     // ~~~ 관련 응답 ....

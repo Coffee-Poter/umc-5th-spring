@@ -6,7 +6,7 @@ import umc.study.domain.common.BaseEntity;
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Getter @Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -18,6 +18,8 @@ public class Review extends BaseEntity {
 
     @Column(nullable = false, length = 40 )
     private String title;
+
+    private String body;
 
     private Float score;
 

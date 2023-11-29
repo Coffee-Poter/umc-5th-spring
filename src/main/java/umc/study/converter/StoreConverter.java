@@ -2,6 +2,7 @@ package umc.study.converter;
 
 import lombok.AllArgsConstructor;
 import umc.study.domain.Region;
+import umc.study.domain.Review;
 import umc.study.domain.Store;
 import umc.study.web.dto.StoreRequestDto;
 import umc.study.web.dto.StoreResponseDto;
@@ -33,4 +34,21 @@ public class StoreConverter {
                 .region(region)
                 .build();
     }
+
+    public static Review toReview(StoreRequestDto.ReviewDto request){
+        return Review.builder()
+                .title(request.getTitle())
+                .score(request.getScore())
+                .body(request.getBody())
+                .build();
+    }
+
+    public static StoreResponseDto.ReviewResultDto toReviewResultDto(Review review){
+        return StoreResponseDto.ReviewResultDto.builder()
+                .reviewId(review.getId())
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+
 }

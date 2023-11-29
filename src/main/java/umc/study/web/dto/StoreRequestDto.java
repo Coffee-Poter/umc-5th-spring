@@ -6,6 +6,7 @@ import umc.study.domain.Region;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 public class StoreRequestDto {
 
@@ -21,5 +22,15 @@ public class StoreRequestDto {
         String regionName;
         @NotNull
         Long regionId;
+    }
+
+    @Getter
+    public static class ReviewDto{
+        @NotBlank
+        String title;
+        @NotNull
+        Float score;
+        @NotBlank
+        String body;
     }
 }
