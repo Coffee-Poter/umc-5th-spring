@@ -33,4 +33,11 @@ public class StoreRequestDto {
         @NotBlank
         String body;
     }
+
+    @Getter
+    public static class CreateMissionDto{
+        Integer reward;
+        String missionSpec;
+
+    }
 }

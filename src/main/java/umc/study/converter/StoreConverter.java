@@ -1,13 +1,16 @@
 package umc.study.converter;
 
 import lombok.AllArgsConstructor;
+import umc.study.domain.Mission;
 import umc.study.domain.Region;
 import umc.study.domain.Review;
 import umc.study.domain.Store;
 import umc.study.web.dto.StoreRequestDto;
 import umc.study.web.dto.StoreResponseDto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @AllArgsConstructor
 public class StoreConverter {
@@ -50,5 +53,20 @@ public class StoreConverter {
                 .build();
     }
 
+    public static Mission toMission(StoreRequestDto.CreateMissionDto request){
+        return Mission.builder()
+                .reward(request.getReward())
+                .deadline(LocalDate.now())
+                .missionSpec(request.getMissionSpec())
+                .memberMissionList(new ArrayList<>())
+                .build();
+    }
+
+    public static StoreResponseDto.CreateMissionResultDto toCreateMissionResultDto(Mission mission){
+        return StoreResponseDto.CreateMissionResultDto.builder()
+                .missionId(mission.getId())
+                .createdAt(mission.getCreatedAt())
+                .build();
+    }
 
 }

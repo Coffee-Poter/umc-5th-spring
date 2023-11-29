@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.study.apiPayload.code.exception.handler.RegionHandler;
 import umc.study.apiPayload.code.status.ErrorStatus;
 import umc.study.converter.StoreConverter;
+import umc.study.domain.Mission;
 import umc.study.domain.Region;
 import umc.study.domain.Review;
 import umc.study.domain.Store;
@@ -23,6 +24,7 @@ public class StoreCommandServiceImpl implements StoreCommandService{
     private final RegionRepository regionRepository;
     private final ReviewRepository reviewRepository;
     private final MemberRepository memberRepository;
+    private final MissionRepository missionRepository;
 
 
     @Override
@@ -45,6 +47,14 @@ public class StoreCommandServiceImpl implements StoreCommandService{
         review.setStore(storeRepository.findById(storeId).get());
 
         return reviewRepository.save(review);
+    }
+
+    @Override
+    public Mission createMission(Long storeId, StoreRequestDto.CreateMissionDto request) {
+        Mission mission = StoreConverter.toMission(request);
+        mission.setStore(storeRepository.findById(storeId).get());
+
+        return missionRepository.save(mission);
     }
 
 }
