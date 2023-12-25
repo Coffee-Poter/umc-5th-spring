@@ -3,21 +3,18 @@ package umc.study.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.study.apiPayload.code.exception.handler.FoodCategoryHandler;
-import umc.study.apiPayload.code.status.ErrorStatus;
 import umc.study.converter.MemberConverter;
 import umc.study.converter.MemberMissionConverter;
 import umc.study.converter.MemberPreferConverter;
 import umc.study.domain.FoodCategory;
 import umc.study.domain.Member;
 import umc.study.domain.Mission;
-import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.domain.mapping.MemberPrefer;
 import umc.study.repository.FoodCategoryRepository;
 import umc.study.repository.MemberRepository;
 import umc.study.repository.MissionRepository;
-import umc.study.repository.StoreRepository;
+import umc.study.validation.anotation.IsChallenging;
 import umc.study.web.dto.MemberRequestDto;
 
 import java.util.List;
@@ -40,7 +37,7 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         Member newMember = MemberConverter.toMember(request);
         List<FoodCategory> foodCategoryList = request.getPreferCategory().stream()
                 .map(category -> {
-                    return foodCategoryRepository.findById(category).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
+                    return foodCategoryRepository.findById(category).orElseThrow();
                 }).collect(Collectors.toList());
 
         List<MemberPrefer> memberPreferList = MemberPreferConverter.toMemberPreferList(foodCategoryList);
@@ -59,6 +56,7 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         MemberMission memberMission = MemberMissionConverter.toMemberMission(request.getMissionStatus());
         memberMission.setMember(member);
         memberMission.setMission(mission);
+
 
         return memberMission;
     }

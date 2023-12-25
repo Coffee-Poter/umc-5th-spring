@@ -5,9 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.study.domain.Member;
 import umc.study.domain.Mission;
+import umc.study.domain.Store;
 import umc.study.domain.mapping.MemberMission;
+import umc.study.repository.MemberMissionRepository;
 import umc.study.repository.MemberRepository;
 import umc.study.repository.MissionRepository;
+import umc.study.repository.StoreRepository;
+import umc.study.validation.anotation.ExistStore;
 
 import java.util.Optional;
 
@@ -17,7 +21,9 @@ import java.util.Optional;
 public class MemberQueryServiceImpl implements MemberQueryService{
 
     private final MemberRepository memberRepository;
+    private final StoreRepository storeRepository;
     private final MissionRepository missionRepository;
+    private final MemberMissionRepository memberMissionRepository;
 
     @Override
     public Optional<Member> findMember(Long id) {
@@ -29,13 +35,10 @@ public class MemberQueryServiceImpl implements MemberQueryService{
         return missionRepository.findById(id);
     }
 
+
     @Override
     public Optional<MemberMission> findMemberMission(Long missionId) {
-        Optional<Mission> mission = findMission(missionId);
-        mission.get().getMemberMissionList().stream().anyMatch(
-                memberMission -> memberMission.getMission().getId().equals(missionId)
-        );
 
-        return Optional.empty();
+        return memberMissionRepository.findById(missionId);
     }
 }

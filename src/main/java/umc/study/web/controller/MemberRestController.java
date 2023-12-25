@@ -9,6 +9,7 @@ import umc.study.domain.Mission;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.service.MemberService.MemberCommandService;
 import umc.study.validation.anotation.ExistMember;
+import umc.study.validation.anotation.ExistStore;
 import umc.study.validation.anotation.IsChallenging;
 import umc.study.web.dto.MemberRequestDto;
 import umc.study.web.dto.MemberResponseDto;
@@ -31,11 +32,9 @@ public class MemberRestController {
 
     @PostMapping("/{memberId}/missions/{missionId}")
     public ApiResponse<MemberResponseDto.ChallengeMissionResultDto> challengeMission(
-            @RequestBody @Valid MemberRequestDto.ChallengeMissionDto request,
-            @ExistMember @PathVariable(name = "memberId") Long memberId,
-            @IsChallenging @PathVariable(name = "missionId") Long missionId){
+            @RequestBody @Valid MemberRequestDto.ChallengeMissionDto request){
 
-        MemberMission mission = memberCommandService.challengeMission(memberId, missionId, request);
+        MemberMission mission = memberCommandService.challengeMission(request.getMemberId(), request.getMissionId(), request);
         return ApiResponse.onSuccess(MemberConverter.toChallengeMissionDto(mission));
     }
 }

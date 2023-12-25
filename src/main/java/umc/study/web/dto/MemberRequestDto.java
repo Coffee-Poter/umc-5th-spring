@@ -3,6 +3,8 @@ package umc.study.web.dto;
 import lombok.Getter;
 import umc.study.domain.enums.MissionStatus;
 import umc.study.validation.anotation.ExistCategories;
+import umc.study.validation.anotation.ExistMember;
+import umc.study.validation.anotation.ExistStore;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -35,5 +37,10 @@ public class MemberRequestDto {
     public static class ChallengeMissionDto{
         @NotNull
         MissionStatus missionStatus;
+        @ExistMember
+        Long memberId;
+        @ExistStore
+        Long missionId;
+
     }
 }

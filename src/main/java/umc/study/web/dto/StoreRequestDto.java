@@ -2,6 +2,7 @@ package umc.study.web.dto;
 
 import lombok.Getter;
 import umc.study.domain.Region;
+import umc.study.validation.anotation.ExistStore;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,9 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class StoreRequestDto {
+
+    //DTO = Data Transfer Object
+    //static : 정적
 
     @Getter
     public static class JoinDto{
@@ -38,6 +42,8 @@ public class StoreRequestDto {
     public static class CreateMissionDto{
         Integer reward;
         String missionSpec;
+        @ExistStore
+        Long storeId;
 
     }
 }

@@ -41,9 +41,8 @@ public class StoreRestController {
 
     @PostMapping("/{storeId}/missions")
     public ApiResponse<StoreResponseDto.CreateMissionResultDto> createMission(
-            @RequestBody @Valid StoreRequestDto.CreateMissionDto request,
-            @ExistStore @PathVariable(name = "storeId") Long storeId){
-        Mission mission = storeCommandService.createMission(storeId, request);
+            @RequestBody @Valid StoreRequestDto.CreateMissionDto request){
+        Mission mission = storeCommandService.createMission(request.getStoreId(), request);
         return ApiResponse.onSuccess(StoreConverter.toCreateMissionResultDto(mission));
     }
 

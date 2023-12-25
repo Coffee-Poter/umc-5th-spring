@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.study.domain.Store;
 import umc.study.repository.StoreRepository;
+import umc.study.validation.anotation.ExistStore;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -18,4 +20,5 @@ public class StoreQueryServiceImpl implements StoreQueryService{
     public Optional<Store> findStore(Long id) {
         return storeRepository.findById(id);
     }
+
 }

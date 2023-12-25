@@ -26,7 +26,6 @@ public class StoreCommandServiceImpl implements StoreCommandService{
     private final MemberRepository memberRepository;
     private final MissionRepository missionRepository;
 
-
     @Override
     @Transactional
     public Store joinStore(StoreRequestDto.JoinDto request) {
@@ -52,6 +51,7 @@ public class StoreCommandServiceImpl implements StoreCommandService{
     @Override
     public Mission createMission(Long storeId, StoreRequestDto.CreateMissionDto request) {
         Mission mission = StoreConverter.toMission(request);
+
         mission.setStore(storeRepository.findById(storeId).get());
 
         return missionRepository.save(mission);
