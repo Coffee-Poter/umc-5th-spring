@@ -1,14 +1,19 @@
 package umc.study.converter;
 
+import org.springframework.data.domain.Page;
 import umc.study.domain.Member;
 import umc.study.domain.Mission;
+import umc.study.domain.Review;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.web.dto.MemberRequestDto;
 import umc.study.web.dto.MemberResponseDto;
+import umc.study.web.dto.StoreResponseDto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MemberConverter {
 
@@ -50,6 +55,29 @@ public class MemberConverter {
                 .missionId(mission.getMission().getId())
                 .missionStatus(mission.getStatus())
                 .updatedAt(mission.getCreatedAt())
+                .build();
+    }
+
+    public static MemberResponseDto.ReviewPreViewDto reviewPreViewDto(Review review){
+        return MemberResponseDto.ReviewPreViewDto.builder()
+                .storename(review.getStore().getName())
+                .score(review.getScore())
+                .createdAt(review.getCreatedAt().toLocalDate())
+                .body(review.getBody())
+                .build();
+    }
+
+    public static MemberResponseDto.ReviewPreViewListDto reviewPreViewListDto(Page<Review> reviewList){
+        List<MemberResponseDto.ReviewPreViewDto> reviewPreViewDtoList = reviewList.getContent().stream()
+                .map(MemberConverter::reviewPreViewDto).collect(Collectors.toList());
+
+        return MemberResponseDto.ReviewPreViewListDto.builder()
+                .isLast(reviewList.isLast())
+                .isFirst(reviewList.isFirst())
+                .totalPage(reviewList.getTotalPages())
+                .totalElements(reviewList.getTotalElements())
+                .listSize(reviewPreViewDtoList.size())
+                .reviewList(reviewPreViewDtoList)
                 .build();
     }
 }
