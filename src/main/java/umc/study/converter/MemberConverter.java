@@ -80,4 +80,30 @@ public class MemberConverter {
                 .reviewList(reviewPreViewDtoList)
                 .build();
     }
+
+    public static MemberResponseDto.MissionPreViewDto missionPreViewDto(MemberMission memberMission){
+        Mission mission = memberMission.getMission();
+        return MemberResponseDto.MissionPreViewDto.builder()
+                .storename(mission.getStore().getName())
+                .mission_spec(mission.getMissionSpec())
+                .reward(mission.getReward())
+                .deadLine(mission.getDeadline())
+                .createdAt(mission.getCreatedAt())
+                .build();
+    }
+
+    public static MemberResponseDto.MissionPreViewListDto missionPreViewListDto(Page<MemberMission> missionList){
+        List<MemberResponseDto.MissionPreViewDto> missionPreViewDtoList = missionList.getContent().stream()
+                .map(MemberConverter::missionPreViewDto).collect(Collectors.toList());
+
+        return MemberResponseDto.MissionPreViewListDto.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionPreViewDtoList.size())
+                .missionList(missionPreViewDtoList)
+                .build();
+    }
+
 }

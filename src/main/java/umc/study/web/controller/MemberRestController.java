@@ -67,4 +67,13 @@ public class MemberRestController {
         Page<Review> reviewList = memberQueryService.getReviewList(memberId, page);
         return ApiResponse.onSuccess(MemberConverter.reviewPreViewListDto(reviewList));
     }
+
+    @GetMapping("/{memberId}/missions")
+    public ApiResponse<MemberResponseDto.MissionPreViewListDto> getMissionList(
+            @ExistMember @PathVariable Long memberId,
+            @RequestParam(name = "page") Integer page
+    ){
+        Page<MemberMission> missionList = memberQueryService.getMissionList(memberId, page);
+        return ApiResponse.onSuccess(MemberConverter.missionPreViewListDto(missionList));
+    }
 }

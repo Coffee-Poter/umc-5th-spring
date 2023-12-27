@@ -55,4 +55,29 @@ public class MemberResponseDto {
         String body;
         LocalDate createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionPreViewListDto{
+        List<MemberResponseDto.MissionPreViewDto> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionPreViewDto{
+        String storename;
+        LocalDate deadLine;
+        String mission_spec;
+        Integer reward;
+        LocalDateTime createdAt;
+    }
 }

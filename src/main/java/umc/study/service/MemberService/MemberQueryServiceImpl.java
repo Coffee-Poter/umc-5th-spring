@@ -49,4 +49,12 @@ public class MemberQueryServiceImpl implements MemberQueryService{
         Page<Review> MemberPage = reviewRepository.findAllByMember(member, PageRequest.of(page, 10));
         return MemberPage;
     }
+
+    @Override
+    public Page<MemberMission> getMissionList(Long memberId, Integer page) {
+        Member member = memberRepository.findById(memberId).get();
+
+        Page<MemberMission> MemberPage = memberMissionRepository.findAllByMember(member, PageRequest.of(page, 10));
+        return MemberPage;
+    }
 }
