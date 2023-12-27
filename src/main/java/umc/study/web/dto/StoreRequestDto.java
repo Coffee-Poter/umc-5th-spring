@@ -40,10 +40,14 @@ public class StoreRequestDto {
 
     @Getter
     public static class CreateMissionDto{
+        @NotNull
         Integer reward;
+        @NotBlank
         String missionSpec;
         @ExistStore
         Long storeId;
-
     }
+
+
+
 }

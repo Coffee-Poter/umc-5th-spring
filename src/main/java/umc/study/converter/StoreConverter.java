@@ -1,6 +1,7 @@
 package umc.study.converter;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import umc.study.domain.Mission;
 import umc.study.domain.Region;
 import umc.study.domain.Review;
@@ -11,6 +12,8 @@ import umc.study.web.dto.StoreResponseDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class StoreConverter {
@@ -28,7 +31,6 @@ public class StoreConverter {
                 .id(request.getRegionId())
                 .name(request.getName())
                 .build();
-
 
         return Store.builder()
                 .name(request.getName())
@@ -66,6 +68,28 @@ public class StoreConverter {
         return StoreResponseDto.CreateMissionResultDto.builder()
                 .missionId(mission.getId())
                 .createdAt(mission.getCreatedAt())
+                .build();
+    }
+
+    public static StoreResponseDto.ReviewPreViewDto reviewPreViewDto(Review review){
+        return StoreResponseDto.ReviewPreViewDto.builder()
+                .ownerNickname(review.getMember().getName())
+                .score(review.getScore())
+                .createdAt(review.getCreatedAt().toLocalDate())
+                .body(review.getBody())
+                .build();
+    }
+    public static StoreResponseDto.ReviewPreViewListDto reviewPreViewListDto(Page<Review> reviewList){
+        List<StoreResponseDto.ReviewPreViewDto> reviewPreViewDtoList = reviewList.getContent().stream()
+                .map(StoreConverter::reviewPreViewDto).collect(Collectors.toList());
+
+        return StoreResponseDto.ReviewPreViewListDto.builder()
+                .isLast(reviewList.isLast())
+                .isFirst(reviewList.isFirst())
+                .totalPage(reviewList.getTotalPages())
+                .totalElements(reviewList.getTotalElements())
+                .listSize(reviewPreViewDtoList.size())
+                .reviewList(reviewPreViewDtoList)
                 .build();
     }
 
