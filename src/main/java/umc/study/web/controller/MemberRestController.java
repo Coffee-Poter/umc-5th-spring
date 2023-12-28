@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.MemberConverter;
@@ -18,6 +19,7 @@ import umc.study.domain.Review;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.service.MemberService.MemberCommandService;
 import umc.study.service.MemberService.MemberQueryService;
+import umc.study.validation.anotation.CheckPage;
 import umc.study.validation.anotation.ExistMember;
 import umc.study.validation.anotation.ExistStore;
 import umc.study.validation.anotation.IsChallenging;
@@ -29,6 +31,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/members")
 public class MemberRestController {
 
@@ -43,9 +46,11 @@ public class MemberRestController {
 
     @PostMapping("/{memberId}/missions/{missionId}")
     public ApiResponse<MemberResponseDto.ChallengeMissionResultDto> challengeMission(
+            @ExistMember @PathVariable Long memberId,
+            @IsChallenging @PathVariable Long missionId,
             @RequestBody @Valid MemberRequestDto.ChallengeMissionDto request){
 
-        MemberMission mission = memberCommandService.challengeMission(request.getMemberId(), request.getMissionId(), request);
+        MemberMission mission = memberCommandService.challengeMission(memberId, missionId, request);
         return ApiResponse.onSuccess(MemberConverter.toChallengeMissionDto(mission));
     }
 
@@ -62,7 +67,7 @@ public class MemberRestController {
     })
     public ApiResponse<MemberResponseDto.ReviewPreViewListDto> getReviewList(
             @ExistMember @PathVariable Long memberId,
-            @RequestParam(name="page") Integer page
+            @CheckPage @RequestParam(name="page") Integer page
     ){
         Page<Review> reviewList = memberQueryService.getReviewList(memberId, page);
         return ApiResponse.onSuccess(MemberConverter.reviewPreViewListDto(reviewList));
@@ -81,7 +86,7 @@ public class MemberRestController {
     })
     public ApiResponse<MemberResponseDto.MissionPreViewListDto> getMissionList(
             @ExistMember @PathVariable Long memberId,
-            @RequestParam(name = "page") Integer page
+            @CheckPage @RequestParam(name = "page") Integer page
     ){
         Page<MemberMission> missionList = memberQueryService.getMissionList(memberId, page);
         return ApiResponse.onSuccess(MemberConverter.missionPreViewListDto(missionList));

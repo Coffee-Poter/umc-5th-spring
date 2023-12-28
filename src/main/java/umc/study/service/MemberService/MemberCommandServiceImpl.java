@@ -12,6 +12,7 @@ import umc.study.domain.Mission;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.domain.mapping.MemberPrefer;
 import umc.study.repository.FoodCategoryRepository;
+import umc.study.repository.MemberMissionRepository;
 import umc.study.repository.MemberRepository;
 import umc.study.repository.MissionRepository;
 import umc.study.validation.anotation.IsChallenging;
@@ -29,6 +30,7 @@ public class MemberCommandServiceImpl implements MemberCommandService{
     private final MemberRepository memberRepository;
     private final MissionRepository missionRepository;
     private final FoodCategoryRepository foodCategoryRepository;
+    private final MemberMissionRepository memberMissionRepository;
 
     @Override
     @Transactional
@@ -53,11 +55,8 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         Member member = memberRepository.findById(memberId).get();
         Mission mission = missionRepository.findById(missionId).get();
 
-        MemberMission memberMission = MemberMissionConverter.toMemberMission(request.getMissionStatus());
-        memberMission.setMember(member);
-        memberMission.setMission(mission);
-
-
+        MemberMission memberMission = MemberMissionConverter.toMemberMission(member, mission, request.getMissionStatus());
+        memberMissionRepository.save(memberMission);
         return memberMission;
     }
 

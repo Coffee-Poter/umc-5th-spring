@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.StoreConverter;
@@ -16,9 +17,9 @@ import umc.study.domain.Review;
 import umc.study.domain.Store;
 import umc.study.service.StoreService.StoreCommandService;
 import umc.study.service.StoreService.StoreQueryService;
+import umc.study.validation.anotation.CheckPage;
 import umc.study.validation.anotation.ExistMember;
 import umc.study.validation.anotation.ExistStore;
-import umc.study.web.dto.MemberRequestDto;
 import umc.study.web.dto.StoreRequestDto;
 import umc.study.web.dto.StoreResponseDto;
 
@@ -26,6 +27,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/stores")
 public class StoreRestController {
 
@@ -68,7 +70,7 @@ public class StoreRestController {
     })
     public ApiResponse<StoreResponseDto.ReviewPreViewListDto> getReviewList(
             @ExistStore @PathVariable(name = "storeId") Long storeId,
-            @RequestParam(name = "page") Integer page
+            @CheckPage @RequestParam(name = "page") Integer page
     ){
         Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDto(reviewList));
@@ -87,7 +89,7 @@ public class StoreRestController {
     })
     public ApiResponse<StoreResponseDto.MissionPreViewListDto> getMissionList(
             @ExistStore @PathVariable(name="storeId") Long storeId,
-            @RequestParam(name="page") Integer page
+            @CheckPage @RequestParam(name="page") Integer page
     ){
         Page<Mission> missionList = storeQueryService.getMissionList(storeId, page);
         return ApiResponse.onSuccess(StoreConverter.missionPreViewListDto(missionList));

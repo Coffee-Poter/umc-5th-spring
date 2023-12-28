@@ -35,6 +35,9 @@ public enum ErrorStatus implements BaseErrorCode {
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE404", "존재하지 않는 가게입니다."),
 
     MISSION_ALREADY_CHALLENGING(HttpStatus.BAD_REQUEST,"MISSION400", "이미 도전 중인 미션입니다."),
+
+    //Page Error
+    PAGE_NOT_FOUND(HttpStatus.NOT_FOUND,"PAGE404", "존재하지 않는 페이지입니다."),
     // For test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
     // ~~~ 관련 응답 ....

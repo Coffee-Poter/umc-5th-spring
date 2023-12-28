@@ -37,10 +37,6 @@ public class MemberRequestDto {
     public static class ChallengeMissionDto{
         @NotNull
         MissionStatus missionStatus;
-        @ExistMember
-        Long memberId;
-        @ExistStore
-        Long missionId;
 
     }
 }

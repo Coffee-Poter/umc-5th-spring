@@ -10,9 +10,11 @@ import java.util.stream.Collectors;
 
 public class MemberMissionConverter {
 
-    public static MemberMission toMemberMission(MissionStatus missionStatus){
+    public static MemberMission toMemberMission(Member memeber, Mission mission, MissionStatus missionStatus){
 
         return MemberMission.builder()
+                .member(memeber)
+                .mission(mission)
                 .status(missionStatus)
                 .build();
     }
