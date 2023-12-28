@@ -11,4 +11,5 @@ public interface MemberCommandService {
 
     MemberMission challengeMission(Long memberId, Long missionId, MemberRequestDto.ChallengeMissionDto request);
 
+    MemberMission finishMission(Long memberId, Long missionId, MemberRequestDto.FinishMissionDto request);
 }

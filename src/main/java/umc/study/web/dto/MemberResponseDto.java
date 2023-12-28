@@ -80,4 +80,15 @@ public class MemberResponseDto {
         Integer reward;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class FinishMissionResultDto{
+        Long memberId;
+        Long missionId;
+        MissionStatus missionStatus;
+        LocalDateTime updatedAt;
+    }
 }

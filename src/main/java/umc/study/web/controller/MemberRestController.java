@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.MemberConverter;
+import umc.study.converter.MemberMissionConverter;
 import umc.study.converter.StoreConverter;
 import umc.study.domain.Member;
 import umc.study.domain.Mission;
@@ -44,7 +45,7 @@ public class MemberRestController {
         return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
     }
 
-    @PostMapping("/{memberId}/missions/{missionId}")
+    @PostMapping("/{memberId}/missions/{missionId}/challeng")
     public ApiResponse<MemberResponseDto.ChallengeMissionResultDto> challengeMission(
             @ExistMember @PathVariable Long memberId,
             @IsChallenging @PathVariable Long missionId,
@@ -90,5 +91,15 @@ public class MemberRestController {
     ){
         Page<MemberMission> missionList = memberQueryService.getMissionList(memberId, page);
         return ApiResponse.onSuccess(MemberConverter.missionPreViewListDto(missionList));
+    }
+
+    @PostMapping("/{memberId}/missions/{missionId}/finish")
+    public ApiResponse<MemberResponseDto.FinishMissionResultDto> finishMission(
+            @ExistMember @PathVariable Long memberId,
+            @PathVariable Long missionId,
+            @RequestBody @Valid MemberRequestDto.FinishMissionDto request
+    ){
+        MemberMission mission = memberCommandService.finishMission(memberId, missionId, request);
+        return ApiResponse.onSuccess(MemberMissionConverter.toFinishMission(mission));
     }
 }

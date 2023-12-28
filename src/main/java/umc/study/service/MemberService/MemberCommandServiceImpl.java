@@ -60,6 +60,17 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         return memberMission;
     }
 
+    @Override
+    @Transactional
+    public MemberMission finishMission(Long memberId, Long missionId, MemberRequestDto.FinishMissionDto request) {
+        Member member = memberRepository.findById(memberId).get();
+        Mission mission = missionRepository.findById(missionId).get();
+
+        MemberMission memberMission = memberMissionRepository.findByMemberAndMission(member, mission);
+        memberMission.setStatus(request.getMissionStatus());
+        return memberMission;
+    }
+
     public boolean findFoodCategoryById(Long value){
         return foodCategoryRepository.existsById(value);
     }

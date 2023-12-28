@@ -4,6 +4,7 @@ import umc.study.domain.Member;
 import umc.study.domain.Mission;
 import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.mapping.MemberMission;
+import umc.study.web.dto.MemberResponseDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,4 +20,13 @@ public class MemberMissionConverter {
                 .build();
     }
 
+    public static MemberResponseDto.FinishMissionResultDto toFinishMission(MemberMission memberMission){
+
+        return MemberResponseDto.FinishMissionResultDto.builder()
+                .memberId(memberMission.getMember().getId())
+                .missionId(memberMission.getMission().getId())
+                .missionStatus(memberMission.getStatus())
+                .updatedAt(memberMission.getUpdatedAt())
+                .build();
+    }
 }

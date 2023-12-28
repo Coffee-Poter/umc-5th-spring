@@ -5,6 +5,7 @@ import umc.study.domain.enums.MissionStatus;
 import umc.study.validation.anotation.ExistCategories;
 import umc.study.validation.anotation.ExistMember;
 import umc.study.validation.anotation.ExistStore;
+import umc.study.validation.anotation.IsChallenging;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -35,8 +36,14 @@ public class MemberRequestDto {
 
     @Getter
     public static class ChallengeMissionDto{
-        @NotNull
+        @NotNull @IsChallenging
         MissionStatus missionStatus;
 
+    }
+
+    @Getter
+    public static class FinishMissionDto{
+        @NotNull
+        MissionStatus missionStatus;
     }
 }
