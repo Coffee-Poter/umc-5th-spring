@@ -14,6 +14,7 @@ import umc.study.repository.StoreRepository;
 import umc.study.validation.anotation.ExistStore;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,6 +36,8 @@ public class StoreQueryServiceImpl implements StoreQueryService{
         Store store = storeRepository.findById(storeId).get();
 
         Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
+        System.out.println(StorePage.isEmpty());
+
         return StorePage;
     }
 

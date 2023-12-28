@@ -5,6 +5,7 @@ import umc.study.domain.Member;
 import umc.study.domain.Mission;
 import umc.study.domain.Review;
 import umc.study.domain.enums.Gender;
+import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.web.dto.MemberRequestDto;
 import umc.study.web.dto.MemberResponseDto;
@@ -13,6 +14,7 @@ import umc.study.web.dto.StoreResponseDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MemberConverter {
@@ -82,19 +84,25 @@ public class MemberConverter {
     }
 
     public static MemberResponseDto.MissionPreViewDto missionPreViewDto(MemberMission memberMission){
-        Mission mission = memberMission.getMission();
-        return MemberResponseDto.MissionPreViewDto.builder()
-                .storename(mission.getStore().getName())
-                .mission_spec(mission.getMissionSpec())
-                .reward(mission.getReward())
-                .deadLine(mission.getDeadline())
-                .createdAt(mission.getCreatedAt())
-                .build();
+        if(MissionStatus.CHALLENGING.equals(memberMission.getStatus())) {
+            Mission mission = memberMission.getMission();
+            return MemberResponseDto.MissionPreViewDto.builder()
+                    .storename(mission.getStore().getName())
+                    .mission_spec(mission.getMissionSpec())
+                    .reward(mission.getReward())
+                    .deadLine(mission.getDeadline())
+                    .createdAt(mission.getCreatedAt())
+                    .build();
+        }
+        else
+            return null;
     }
 
     public static MemberResponseDto.MissionPreViewListDto missionPreViewListDto(Page<MemberMission> missionList){
         List<MemberResponseDto.MissionPreViewDto> missionPreViewDtoList = missionList.getContent().stream()
-                .map(MemberConverter::missionPreViewDto).collect(Collectors.toList());
+                .map(MemberConverter::missionPreViewDto)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
         return MemberResponseDto.MissionPreViewListDto.builder()
                 .isLast(missionList.isLast())
