@@ -13,24 +13,19 @@ import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.MemberConverter;
 import umc.study.converter.MemberMissionConverter;
-import umc.study.converter.StoreConverter;
 import umc.study.domain.Member;
-import umc.study.domain.Mission;
 import umc.study.domain.Review;
 import umc.study.domain.mapping.MemberMission;
 import umc.study.service.MemberService.MemberCommandService;
 import umc.study.service.MemberService.MemberQueryService;
 import umc.study.validation.anotation.CheckPage;
 import umc.study.validation.anotation.ExistMember;
-import umc.study.validation.anotation.ExistStore;
 import umc.study.validation.anotation.IsChallenging;
 import umc.study.web.dto.MemberRequestDto;
 import umc.study.web.dto.MemberResponseDto;
-import umc.study.web.dto.StoreResponseDto;
 
 import javax.validation.Valid;
 
-@RestController
 @RequiredArgsConstructor
 @Validated
 @RequestMapping("/members")
