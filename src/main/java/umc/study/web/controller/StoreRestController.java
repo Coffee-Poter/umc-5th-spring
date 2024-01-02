@@ -25,7 +25,6 @@ import umc.study.web.dto.StoreResponseDto;
 
 import javax.validation.Valid;
 
-@RestController
 @RequiredArgsConstructor
 @Validated
 @RequestMapping("/stores")
